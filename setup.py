@@ -27,6 +27,9 @@ setup(
     url='https://gitlab.com/TECHNOFAB/aiokubemq',
     license='GPL-3.0',
     packages=setuptools.find_packages(),
+    package_data={
+        "aiokubemq": ["py.typed", "*.pyi", "**/*.pyi"]
+    },
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
