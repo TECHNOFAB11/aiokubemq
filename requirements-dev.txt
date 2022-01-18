@@ -1,0 +1,7 @@
+grpcio_tools~=1.43.0
+mypy~=0.931
+black~=21.12b0
+flake8~=4.0.1
+types-protobuf~=3.19.0
+black-configparser~=0.2.0b2
+build~=0.7.0

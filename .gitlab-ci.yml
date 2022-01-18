@@ -1,0 +1,50 @@
+image: python:3.8
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+stages:
+  - Lint
+  - Build
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+before_script:
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements-dev.txt
+
+
+lint:flake8:
+  stage: Lint
+  allow_failure: true
+  script:
+    - flake8 aiokubemq
+
+
+lint:black:
+  stage: Lint
+  allow_failure: true
+  script:
+    - black --check aiokubemq
+
+
+lint:mypy:
+  stage: Lint
+  allow_failure: true
+  script:
+    - mypy aiokubemq
+
+
+build:
+  stage: Build
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist
+
